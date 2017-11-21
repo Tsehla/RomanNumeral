@@ -1,0 +1,95 @@
+function numberIsMadeOf(initialNumber){
+  
+var finalNumber=[ ];
+
+var initialBroken=initialNumber.toString().split('');
+
+while(initialBroken.length!==0){ //do while condition not met
+
+var mapVar=initialBroken.map(function(currentValue, indexValue, initialBroken){//loop through array values 
+
+  if(indexValue!==0){
+    
+          currentValue=0;//turn all non zero indexes value to 0
+  
+    
+}
+  
+  if(indexValue===0){
+    
+            currentValue=currentValue;
+    
+}
+  
+       return currentValue.toString();//result from if else
+       
+  
+}).toString().replace(/,/g,"");//remove commas
+
+finalNumber.push(parseInt(mapVar));//push turn to number
+
+ initialBroken.shift();//remove zero index number
+}
+
+console.log(finalNumber);
+
+      return finalNumber;
+
+}
+
+
+numberIsMadeOf(prompt("input number"));
+
+
+//----------------VERSION 2 -------------------
+
+
+
+function NumberRemainderOrSomething(inputValue){
+  var NumberRemainderOrSomethingStoringArray=[ ];
+    
+    var removeAmilli =inputValue-inputValue%1000000; //millions
+    
+    var removeAhundredThounsands=inputValue-removeAmilli;
+        removeAhundredThounsands=removeAhundredThounsands-removeAhundredThounsands%100000;//hundred thousand
+    
+    var removeAtenThousands=inputValue-removeAmilli-removeAhundredThounsands;//ten thousand
+        removeAtenThousands=removeAtenThousands-removeAtenThousands%10000;
+    
+    var removeThousands=inputValue-removeAmilli-removeAhundredThounsands-removeAtenThousands;    
+        removeThousands =removeThousands-removeThousands %1000;//thousand
+
+    var removeHundred=inputValue-removeAmilli-removeAhundredThounsands-removeAtenThousands-removeThousands;
+        removeHundred=removeHundred-removeHundred%100;//hundred
+        
+    var removeTens= inputValue-removeAmilli-removeAhundredThounsands-removeAtenThousands-removeThousands-removeHundred;
+        removeTens=removeTens-removeTens%10;//tens
+        
+    var removedSingleDigits=inputValue-removeAmilli-removeAhundredThounsands-removeAtenThousands-removeThousands-removeHundred-removeTens; //single digits
+  
+
+
+  NumberRemainderOrSomethingStoringArray.push(removeAmilli,removeAhundredThounsands,removeAtenThousands,removeThousands,removeHundred,removeTens,removedSingleDigits); //push to array
+
+ 
+
+var finalResultArray=NumberRemainderOrSomethingStoringArray.filter(function(x){
+   return x>0;
+ });
+
+console.log(finalResultArray);
+ 
+}
+
+ 
+
+
+
+NumberRemainderOrSomething(prompt("Enter number not over a million"));
+
+
+
+
+
+
+
